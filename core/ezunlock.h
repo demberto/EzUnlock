@@ -9,6 +9,12 @@
 #define EzDeleteFile EzDeleteFileA
 #endif // UNICODE
 
+#ifdef EZUNLOCK_EXPORTS
+#define SYMBOL extern "C" __declspec(dllexport)
+#else
+#define SYMBOL extern "C" __declspec(dllimport)
+#endif
+
 static const bool _EzDeleteFile(const tstring&);
 
 /// <summary>
@@ -22,7 +28,7 @@ static const bool _EzDeleteFile(const tstring&);
 /// </example>
 /// <param name="path">Path of the file-like object to be unlocked</param>
 /// <returns>Whether the operation was successful</returns>
-extern "C" __declspec(dllexport) bool EzUnlockFileA(const char* path);
+SYMBOL bool EzUnlockFileA(const char* path);
 
 /// <summary>
 /// Tries to unlock a file-like object. Success is not guaranteed.
@@ -35,7 +41,7 @@ extern "C" __declspec(dllexport) bool EzUnlockFileA(const char* path);
 /// </example>
 /// <param name="path">Path of the file-like object to be unlocked</param>
 /// <returns>Whether the operation was successful</returns>
-extern "C" __declspec(dllexport) bool EzUnlockFileW(const wchar_t* path);
+SYMBOL bool EzUnlockFileW(const wchar_t* path);
 
 /// <summary>
 /// Tries to delete a file-like object normally, first. If it fails, the file
@@ -50,7 +56,7 @@ extern "C" __declspec(dllexport) bool EzUnlockFileW(const wchar_t* path);
 /// </example>
 /// <param name="path">Path of the file-like object to be deleted</param>
 /// <returns>Whether the operation was successful</returns>
-extern "C" __declspec(dllexport) bool EzDeleteFileA(const char* path);
+SYMBOL bool EzDeleteFileA(const char* path);
 
 /// <summary>
 /// Tries to delete a file-like object normally, first. If it fails, the file
@@ -65,6 +71,6 @@ extern "C" __declspec(dllexport) bool EzDeleteFileA(const char* path);
 /// </example>
 /// <param name="path">Path of the file-like object to be deleted</param>
 /// <returns>Whether the operation was successful</returns>
-extern "C" __declspec(dllexport) bool EzDeleteFileW(const wchar_t* path);
+SYMBOL bool EzDeleteFileW(const wchar_t* path);
 
 #endif // !EZUNLOCK_H_

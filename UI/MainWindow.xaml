@@ -1,16 +1,66 @@
-﻿<Window x:Class="UI.MainWindow"
+﻿<!--
+SPDX-FileCopyrightText: 2022 demberto <demberto@protonmail.com>
+
+SPDX-License-Identifier: MIT
+-->
+
+<Window x:Class="EzUnlock.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:UI"
         mc:Ignorable="d"
-        Title="MainWindow" Height="400" Width="300">
-    <Grid>
-        <Button Height="256" Margin="0,65,0,0" VerticalAlignment="Top" Width="256">
+        Title="EzUnlock" Height="435" Width="300">
+    <DockPanel>
+        <StatusBar DockPanel.Dock="Bottom" Margin="0,15,0,0" Background="LightGray">
+            <StatusBar.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="Auto"/>
+                        </Grid.ColumnDefinitions>
+                    </Grid>
+                </ItemsPanelTemplate>
+            </StatusBar.ItemsPanel>
+            <StatusBarItem Grid.Column="0">
+                <Label x:Name="statusBarLbl"/>
+            </StatusBarItem>
+            <StatusBarItem Grid.Column="1">
+                <ProgressBar x:Name="statusBarProg" Width="100" Height="24" Visibility="Hidden"/>
+            </StatusBarItem>
+        </StatusBar>
+        <DockPanel DockPanel.Dock="Top" LastChildFill="False">
+            <Button DockPanel.Dock="Right" Padding="2" Margin="2" Background="Transparent" BorderBrush="Transparent" Click="OpenInfoWindow">
+                <Image Source="/Resources/info.png" Height="24" Width="24" ToolTip="Info" UseLayoutRounding="False"/>
+            </Button>
+            <Button DockPanel.Dock="Right" Click="NotImplemented" Padding="2" Margin="2" Background="Transparent" BorderBrush="Transparent">
+                <Image Source="/Resources/setting-lines.png" Height="20" Width="20" Margin="2"/>
+            </Button>
+        </DockPanel>
+        <Button AllowDrop="True" Drop="FileDrop" Click="OpenFilePicker" MinHeight="256" Margin="12" DockPanel.Dock="Top" MinWidth="256" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Background="Transparent" BorderBrush="Transparent">
             <StackPanel>
-                
+                <Image Source="/Resources/icon.png" Height="160" Stretch="Fill" Width="160"/>
+                <Label x:Name="dropLbl" Margin="6" FontSize="14" Content="Drop or select files" HorizontalAlignment="Center"/>
             </StackPanel>
         </Button>
-    </Grid>
+        <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center">
+            <Button x:Name="unlockPauseBtn" Click="Unlock"  Margin="0,0,10,0" IsEnabled="False" Padding="2">
+                <StackPanel Orientation="Horizontal">
+                    <Image x:Name="unlockPauseBtnImg" Height="16" Width="16" Source="/Resources/unlock.png"/>
+                    <Label x:Name="unlockPauseBtnLbl" Content="Unlock"/>
+                </StackPanel>
+            </Button>
+            <Button x:Name="deleteCancelBtn" Click="Delete" Margin="10,0,0,0" IsEnabled="False" Padding="2">
+                <StackPanel Orientation="Horizontal">
+                    <Image x:Name="deleteCancelBtnImg" Height="16" Width="16" Source="/Resources/delete.png"/>
+                    <Label x:Name="deleteCancelBtnLbl" Content="Delete"/>
+                </StackPanel>
+            </Button>
+        </StackPanel>
+    </DockPanel>
 </Window>
+

@@ -1,0 +1,61 @@
+﻿<!--
+SPDX-FileCopyrightText: 2022 demberto <demberto@protonmail.com>
+
+SPDX-License-Identifier: MIT
+-->
+
+<Window x:Class="EzUnlock.Info"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d"
+        Title="EzUnlock" Height="212" Width="300" ResizeMode="NoResize">
+    <StackPanel>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="2*"/>
+            </Grid.ColumnDefinitions>
+            <Image Source="/Resources/icon.png" Grid.Column="0" Grid.RowSpan="2" Height="64" Width="64" Margin="6"/>
+            <TextBlock Grid.Column="1" Grid.Row="0" Padding="0,6,0,0">
+                <Label FontSize="18" FontWeight="DemiBold">
+                    EzUnlock
+                </Label>
+                <Label FontSize="18">v0.1</Label>
+            </TextBlock>
+            <TextBlock Grid.Row="1" Grid.Column="1" Padding="5" TextWrapping="Wrap">
+                An open source alternative to and inspired by IOBit Unlocker.
+            </TextBlock>
+        </Grid>
+        <TextBlock Padding="6" Background="LightGray">
+            Thanks to
+            <Hyperlink NavigateUri="https://www.github.com/ez8-co">
+                @ez8-co
+            </Hyperlink>
+                for the core
+            <Hyperlink NavigateUri="https://www.github.com/ez8-co/unlocker">
+                unlocker
+            </Hyperlink>
+            logic.
+            <LineBreak/>
+            <LineBreak/>
+            Icons by 
+            <Hyperlink NavigateUri="https://www.flaticon.com">
+                FlatIcon
+            </Hyperlink>
+            <LineBreak/>
+            <LineBreak/>
+            <TextBlock FontWeight="SemiBold">
+                Check out EzUnlock on
+                <Hyperlink NavigateUri="https://www.github.com/demberto/EzUnlock">
+                    GitHub
+                </Hyperlink>
+            </TextBlock>
+        </TextBlock>
+    </StackPanel>
+</Window>
