@@ -8,7 +8,7 @@
 		<StartupObject>EzUnlock.UI.App</StartupObject>
 		<PlatformTarget>x64</PlatformTarget>
 		<Platforms>x64;x86</Platforms>
-		<PackageId>$(AssemblyName)</PackageId>
+		<PackageId>EzUnlock</PackageId>
 		<Authors>demberto</Authors>
 		<Product>EzUnlock</Product>
 		<PackageProjectUrl></PackageProjectUrl>
@@ -25,6 +25,13 @@
 		<ApplicationIcon>Assets\App.ico</ApplicationIcon>
 		<UseWindowsForms>True</UseWindowsForms>
 	</PropertyGroup>
+
+	<ItemGroup>
+	  <Compile Remove="Models\**" />
+	  <EmbeddedResource Remove="Models\**" />
+	  <None Remove="Models\**" />
+	  <Page Remove="Models\**" />
+	</ItemGroup>
 
 	<ItemGroup>
 		<Content Include="Assets\App.ico" />
@@ -66,10 +73,6 @@
 			<Pack>True</Pack>
 			<PackagePath>\</PackagePath>
 		</None>
-	</ItemGroup>
-
-	<ItemGroup>
-	  <Folder Include="Models\" />
 	</ItemGroup>
 
 	<Target Name="RemoveDuplicateAnalyzers" BeforeTargets="CoreCompile">

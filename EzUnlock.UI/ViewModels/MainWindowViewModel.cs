@@ -1,6 +1,8 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using System.Collections.ObjectModel;
+using System.Linq;
+using System.IO;
 using EzUnlock.UI.Services;
 
 namespace EzUnlock.UI.ViewModels
@@ -14,9 +16,13 @@ namespace EzUnlock.UI.ViewModels
         [RelayCommand]
         private void OpenPicker()
         {
-            foreach (string? file in _filePickerService.PickFiles())
+            var files = _filePickerService.PickFiles()
+                .Select(x => (Short: x, Full: Path.GetFullPath(x)))
+                .Where(x => Items.All(y => y.Location != x.Full));
+
+            foreach (var file in files)
             {
-                Items.Add(new ItemViewModel(file));
+                Items.Add(new ItemViewModel(file.Short));
             }
         }
     }

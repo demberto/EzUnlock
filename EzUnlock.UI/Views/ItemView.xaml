@@ -6,21 +6,21 @@
              xmlns:vm="clr-namespace:EzUnlock.UI.ViewModels"
              mc:Ignorable="d"
              d:DataContext="{d:DesignInstance Type=vm:ItemViewModel}"
-             d:DesignHeight="80" d:DesignWidth="500">
-    <Grid d:Background="White">
+             d:DesignHeight="60" d:DesignWidth="500">
+    <Grid d:Background="White" Width="Auto">
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="80"/>
+            <ColumnDefinition Width="60"/>
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="40"/>
         </Grid.ColumnDefinitions>
-        <Image Grid.Column="0" Margin="8" Height="64" Width="64" Source="{Binding Icon}"/>
-        <Grid Grid.Column="1" Margin="6">
+        <Image Grid.Column="0" Margin="6" Source="{Binding IconSource}"/>
+        <Grid Grid.Column="1">
             <Grid.RowDefinitions>
                 <RowDefinition Height="3*"/>
                 <RowDefinition Height="2*"/>
             </Grid.RowDefinitions>
-            <Label Grid.Row="0" d:Content="Name" Content="{Binding Name}" FontSize="24" VerticalAlignment="Center"/>
-            <Label Grid.Row="1" d:Content="Location" Content="{Binding Location}" FontSize="14" VerticalAlignment="Center"/>
+            <Label Grid.Row="0" d:Content="Name" Content="{Binding Name}" FontSize="16" VerticalAlignment="Center"/>
+            <Label Grid.Row="1" d:Content="Location" Content="{Binding Location}" VerticalAlignment="Center"/>
         </Grid>
         <WrapPanel Grid.Column="2" ItemHeight="32" ItemWidth="32" Margin="4" VerticalAlignment="Center">
             <Button Background="Transparent" BorderThickness="0" FontSize="14" Content="❌"/>

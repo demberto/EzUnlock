@@ -10,7 +10,7 @@
         Title="MainWindow" Height="400" Width="500">
     <StackPanel>
         <Button Command="{Binding OpenPickerCommand}">Add</Button>
-        <ListView>
+        <ListView ItemsSource="{Binding Items}" ScrollViewer.CanContentScroll="False">
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <views:ItemView/>
