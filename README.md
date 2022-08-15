@@ -19,8 +19,8 @@ Check [TODO](https://github.com/demberto/EzUnlock/blob/master/TODO.md)
 
 Unlocker: [@ez8-co/unlocker](https://github.com/ez8-co/unlocker)
 
-Icons by: [FlatIcon](https://flaticon.com)
+<a href="https://www.flaticon.com/free-icons/lock" title="lock icons">Lock icons created by juicy_fish - Flaticon</a>
 
 # License
 
-**EzUnlock** is licensed under the [MIT License](https://github.com/demberto/EzUnlock/blob/master/LICENSE)
+The code in this project is licensed under the [MIT License](https://github.com/demberto/EzUnlock/blob/master/LICENSE)
