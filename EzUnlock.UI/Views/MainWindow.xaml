@@ -27,7 +27,7 @@
             
             <Button Grid.Column="0" Margin="5" Command="{Binding OpenPickerCommand}" Content="Add" x:Name="addBtn"/>
             <Button Grid.Column="1" Margin="5" Click="UnlockItemsAsync" Content="Unlock" x:Name="unlockBtn"/>
-            <Button Grid.Column="2" Margin="5" Content="Delete" x:Name="deleteBtn"/>
+            <Button Grid.Column="2" Margin="5" Click="DeleteItemsAsync" Content="Delete" x:Name="deleteBtn"/>
         </Grid>
         
         <ListView Grid.Row="1" ItemsSource="{Binding Items}" ScrollViewer.HorizontalScrollBarVisibility="Visible" ScrollViewer.VerticalScrollBarVisibility="Visible" HorizontalContentAlignment="Stretch">
