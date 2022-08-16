@@ -10,31 +10,31 @@ namespace EzUnlock.UI.ViewModels
     internal partial class ItemViewModel : ObservableObject
     {
         [ObservableProperty]
-        private string? location;
+        private string location;
+
+        [ObservableProperty]
+        public bool isProcessing;
 
         public BitmapSource? IconSource { get; }
         public string? Name { get; }
 
         public ItemViewModel(string location)
         {
-            if (!string.IsNullOrEmpty(location))
+            this.isProcessing = false;
+            this.location = location;
+            if (Directory.Exists(location))
             {
-                var fullpath = this.location = Path.GetFullPath(location);
+                Name = Path.GetDirectoryName(location)!;
+            }
+            else if (File.Exists(location))
+            {
+                Name = Path.GetFileName(location)!;
+            }
 
-                if (Directory.Exists(fullpath))
-                {
-                    Name = Path.GetDirectoryName(fullpath)!;
-                }
-                else if (File.Exists(fullpath))
-                {
-                    Name = Path.GetFileName(fullpath)!;
-                }
-
-                var icon = Icon.ExtractAssociatedIcon(fullpath);
-                if (icon is not null)
-                {
-                    IconSource = Imaging.CreateBitmapSourceFromHIcon(icon.Handle, Int32Rect.Empty, BitmapSizeOptions.FromEmptyOptions());
-                }
+            var icon = Icon.ExtractAssociatedIcon(location);
+            if (icon is not null)
+            {
+                IconSource = Imaging.CreateBitmapSourceFromHIcon(icon.Handle, Int32Rect.Empty, BitmapSizeOptions.FromEmptyOptions());
             }
         }
     }

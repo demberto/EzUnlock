@@ -8,7 +8,7 @@
 		<StartupObject>EzUnlock.UI.App</StartupObject>
 		<PlatformTarget>x64</PlatformTarget>
 		<Platforms>x64;x86</Platforms>
-		<PackageId>EzUnlock</PackageId>
+		<PackageId></PackageId>
 		<Authors>demberto</Authors>
 		<Product>EzUnlock</Product>
 		<PackageProjectUrl></PackageProjectUrl>
@@ -24,14 +24,9 @@
 		<Description>Force delete Windows files &amp; directories</Description>
 		<ApplicationIcon>Assets\App.ico</ApplicationIcon>
 		<UseWindowsForms>True</UseWindowsForms>
+		<AssemblyName>EzUnlock</AssemblyName>
+		<ApplicationManifest>Properties\app.manifest</ApplicationManifest>
 	</PropertyGroup>
-
-	<ItemGroup>
-	  <Compile Remove="Models\**" />
-	  <EmbeddedResource Remove="Models\**" />
-	  <None Remove="Models\**" />
-	  <Page Remove="Models\**" />
-	</ItemGroup>
 
 	<ItemGroup>
 		<Content Include="Assets\App.ico" />

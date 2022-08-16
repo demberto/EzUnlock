@@ -16,8 +16,7 @@ namespace EzUnlock {
 		{
 			return unlocker::Dir(path_tstring).Unlock();
 		}
-
-		throw gcnew System::IO::IOException("File or directory not found");
+		return false;
 	}
 
 	bool Unlocker::Delete(System::String^ path)
@@ -32,7 +31,6 @@ namespace EzUnlock {
 		{
 			return unlocker::Dir(path_tstring).Delete();
 		}
-
-		throw gcnew System::IO::IOException("File or directory not found");
+		return false;
 	}
 }

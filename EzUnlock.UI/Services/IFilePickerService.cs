@@ -1,6 +1,6 @@
 ﻿namespace EzUnlock.UI.Services
 {
-    interface IFilePickerService
+    internal interface IFilePickerService
     {
         string[] PickFiles();
         string PickFolder();
