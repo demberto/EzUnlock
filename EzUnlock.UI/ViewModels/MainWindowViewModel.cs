@@ -17,12 +17,12 @@ namespace EzUnlock.UI.ViewModels
         private void OpenPicker()
         {
             var files = _filePickerService.PickFiles()
-                .Select(x => (Short: x, Full: Path.GetFullPath(x)))
-                .Where(x => Items.All(y => y.Location != x.Full));
+                                          .Select(x => (Short: x, Full: Path.GetFullPath(x)))
+                                          .Where(x => Items.All(y => y.Location != x.Full));
 
             foreach (var file in files)
             {
-                Items.Add(new ItemViewModel(file.Short));
+                Items.Add(new ItemViewModel(file.Full));
             }
         }
     }
