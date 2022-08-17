@@ -11,11 +11,14 @@ namespace EzUnlock.UI.Services
             return ofd.FileNames;
         }
 
-        public string PickFolder()
+        public string? PickFolder()
         {
             FolderBrowserDialog ofd = new() { ShowNewFolderButton = false };
-            _ = ofd.ShowDialog();
-            return ofd.SelectedPath;
+            if (ofd.ShowDialog() != DialogResult.Cancel)
+            {
+                return ofd.SelectedPath;
+            }
+            return null;
         }
     }
 }

@@ -20,21 +20,20 @@ namespace EzUnlock.UI.ViewModels
 
         public ItemViewModel(string location)
         {
-            this.isProcessing = false;
+            isProcessing = false;
             this.location = location;
             if (Directory.Exists(location))
             {
-                Name = Path.GetDirectoryName(location)!;
+                Name = new DirectoryInfo(location).Name;
             }
             else if (File.Exists(location))
             {
                 Name = Path.GetFileName(location)!;
-            }
-
-            var icon = Icon.ExtractAssociatedIcon(location);
-            if (icon is not null)
-            {
-                IconSource = Imaging.CreateBitmapSourceFromHIcon(icon.Handle, Int32Rect.Empty, BitmapSizeOptions.FromEmptyOptions());
+                var icon = Icon.ExtractAssociatedIcon(location);
+                if (icon is not null)
+                {
+                    IconSource = Imaging.CreateBitmapSourceFromHIcon(icon.Handle, Int32Rect.Empty, BitmapSizeOptions.FromEmptyOptions());
+                }
             }
         }
     }

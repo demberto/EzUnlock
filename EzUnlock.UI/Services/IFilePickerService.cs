@@ -3,6 +3,6 @@
     internal interface IFilePickerService
     {
         string[] PickFiles();
-        string PickFolder();
+        string? PickFolder();
     }
 }

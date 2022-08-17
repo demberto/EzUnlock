@@ -10,49 +10,74 @@
         Title="EzUnlock" Height="400" MinHeight="300" Width="500" MinWidth="300">
     <Window.Resources>
         <c:InvertableBoolVisibilityConverter x:Key="InvertedVisibilityConverter"/>
+        <Style TargetType="{x:Type Button}" x:Key="DisableWhileProcessing">
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding Path=IsProcessing}" Value="True">
+                    <Setter Property="IsEnabled" Value="False" />
+                </DataTrigger>
+                <DataTrigger Binding="{Binding Path=IsProcessing}" Value="False">
+                    <Setter Property="IsEnabled" Value="True" />
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
     </Window.Resources>
 
     <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="239*"/>
+            <ColumnDefinition Width="11*"/>
+        </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="30"/>
             <RowDefinition/>
         </Grid.RowDefinitions>
-        
-        <Grid Grid.Row="0">
+
+        <Grid Grid.Row="0" Grid.ColumnSpan="2">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="2*"/>
+                <ColumnDefinition Width="5"/>
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
-            
-            <Button Grid.Column="0" Margin="5" Command="{Binding OpenPickerCommand}" Content="Add" x:Name="addBtn"/>
-            <Button Grid.Column="1" Margin="5" Click="UnlockItemsAsync" Content="Unlock" x:Name="unlockBtn"/>
-            <Button Grid.Column="2" Margin="5" Click="DeleteItemsAsync" Content="Delete" x:Name="deleteBtn"/>
+
+            <Grid Grid.Column="0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+
+                <Label Grid.Column="0" Content="Add" x:Name="addBtn"/>
+                <Button Grid.Column="1" Margin="5" Command="{Binding OpenFilePickerCommand}" Style="{StaticResource DisableWhileProcessing}" Content="Files"/>
+                <Button Grid.Column="2" Margin="5" Command="{Binding OpenFolderPickerCommand}" Style="{StaticResource DisableWhileProcessing}" Content="Folder"/>
+            </Grid>
+            <Separator Grid.Column="1">
+                <Separator.LayoutTransform>
+                    <RotateTransform Angle="90"/>
+                </Separator.LayoutTransform>
+            </Separator>
+            <Button Grid.Column="2" Margin="5" Command="{Binding UnlockItemsAsyncCommand}" Content="Unlock" Style="{StaticResource DisableWhileProcessing}"/>
+            <Button Grid.Column="3" Margin="5" Command="{Binding DeleteItemsAsyncCommand}" Content="Delete" Style="{StaticResource DisableWhileProcessing}"/>
         </Grid>
-        
-        <ListView Grid.Row="1" ItemsSource="{Binding Items}" ScrollViewer.HorizontalScrollBarVisibility="Visible" ScrollViewer.VerticalScrollBarVisibility="Visible" HorizontalContentAlignment="Stretch">
+
+        <ListView Grid.Row="1" ItemsSource="{Binding Items}" HorizontalContentAlignment="Stretch" Grid.ColumnSpan="2">
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <Grid d:Background="White">
                         <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="60"/>
+                            <ColumnDefinition Width="Auto"/>
                             <ColumnDefinition Width="*"/>
-                            <ColumnDefinition Width="40"/>
+                            <ColumnDefinition Width="Auto"/>
                         </Grid.ColumnDefinitions>
-                        
-                        <Image Grid.Column="0" Margin="6" Source="{Binding IconSource}"/>
-                        
-                        <Grid Grid.Column="1">
-                            <Grid.RowDefinitions>
-                                <RowDefinition Height="3*"/>
-                                <RowDefinition Height="2*"/>
-                            </Grid.RowDefinitions>
-                            
-                            <Label Grid.Row="0" d:Content="Name" Content="{Binding Name}" FontSize="16" VerticalAlignment="Center"/>
-                            <Label Grid.Row="1" d:Content="Location" Content="{Binding Location}" VerticalAlignment="Center"/>
-                        </Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="2*"/>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
 
-                        <Button Grid.Column="2" VerticalAlignment="Center" Background="Transparent" BorderThickness="0" FontSize="14" Content="❌" Click="DeleteItem" Visibility="{Binding IsProcessing, Converter={StaticResource InvertedVisibilityConverter}, ConverterParameter=Inverted}"/>
+                        <Image Grid.Column="0" Grid.RowSpan="2" Margin="6" Source="{Binding IconSource}"/>
+                        <Label Grid.Column="1" Grid.Row="0" d:Content="Name" Content="{Binding Name}" FontSize="16" VerticalAlignment="Center"/>
+                        <Label Grid.Column="1" Grid.Row="1" d:Content="Location" Content="{Binding Location}" VerticalAlignment="Center"/>
+                        <Button Grid.Column="2" Grid.RowSpan="2" VerticalAlignment="Center" Background="Transparent" BorderThickness="0" FontSize="14" Content="❌" Click="DeleteItem" Visibility="{Binding IsProcessing, Converter={StaticResource InvertedVisibilityConverter}, ConverterParameter=Inverted}"/>
                     </Grid>
                 </DataTemplate>
             </ListView.ItemTemplate>
