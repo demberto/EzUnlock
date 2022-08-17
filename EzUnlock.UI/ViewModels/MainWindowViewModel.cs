@@ -1,6 +1,8 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using System.Collections.ObjectModel;
+using System.Collections.Generic;
+using System.Collections.Specialized;
 using System.Linq;
 using System.IO;
 using System.Threading.Tasks;
@@ -13,6 +15,13 @@ namespace EzUnlock.UI.ViewModels
         public MainWindowViewModel()
         {
             isProcessing = false;
+            Items.CollectionChanged += ItemsChanged;
+        }
+
+        private void ItemsChanged(object? sender, NotifyCollectionChangedEventArgs e)
+        {
+            UnlockItemsCommand.NotifyCanExecuteChanged();
+            DeleteItemsCommand.NotifyCanExecuteChanged();
         }
 
         public ObservableCollection<ItemViewModel> Items { get; } = new();
@@ -30,7 +39,7 @@ namespace EzUnlock.UI.ViewModels
         private async Task UnlockItemsAsync()
         {
             isProcessing = true;
-            var tmp = Items.ToList();
+            List<ItemViewModel>? tmp = Items.ToList();
             foreach (ItemViewModel? item in tmp)
             {
                 if (await Task.Run(() => Unlocker.Unlock(item.Location)))
@@ -45,7 +54,7 @@ namespace EzUnlock.UI.ViewModels
         private async Task DeleteItemsAsync()
         {
             isProcessing = false;
-            var tmp = Items.ToList();
+            List<ItemViewModel>? tmp = Items.ToList();
             foreach (ItemViewModel? item in tmp)
             {
                 if (await Task.Run(() => Unlocker.Delete(item.Location)))
