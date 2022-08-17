@@ -12,7 +12,5 @@ using namespace System::Security::Permissions;
 [assembly:AssemblyCopyrightAttribute(L"Copyright (c) demberto 2022")];
 [assembly:AssemblyTrademarkAttribute(L"")];
 [assembly:AssemblyCultureAttribute(L"")];
-
-[assembly:AssemblyVersionAttribute(L"1.0.*")];
-
+[assembly:AssemblyVersionAttribute(L"0.2.*")];
 [assembly:ComVisible(false)];

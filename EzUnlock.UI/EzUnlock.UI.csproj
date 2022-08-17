@@ -11,7 +11,7 @@
 		<PackageId></PackageId>
 		<Authors>demberto</Authors>
 		<Product>EzUnlock</Product>
-		<PackageProjectUrl></PackageProjectUrl>
+		<PackageProjectUrl>https://github.com/demberto/EzUnlock</PackageProjectUrl>
 		<PackageReadmeFile>README.md</PackageReadmeFile>
 		<RepositoryUrl>https://github.com/demberto/EzUnlock</RepositoryUrl>
 		<NeutralLanguage>en</NeutralLanguage>
@@ -26,6 +26,8 @@
 		<UseWindowsForms>True</UseWindowsForms>
 		<AssemblyName>EzUnlock</AssemblyName>
 		<ApplicationManifest>Properties\app.manifest</ApplicationManifest>
+		<AssemblyVersion>0.2.0.0</AssemblyVersion>
+		<FileVersion>0.2.0.0</FileVersion>
 	</PropertyGroup>
 
 	<ItemGroup>

@@ -16,22 +16,20 @@ namespace EzUnlock.UI.ViewModels
         }
 
         public ObservableCollection<ItemViewModel> Items { get; } = new();
-        // public IAsyncRelayCommand UnlockItemsAsyncCommand { get; }
-        // public IAsyncRelayCommand DeleteItemsAsyncCommand { get; }
         private readonly IFilePickerService _filePickerService = new FilePickerService();
 
         [ObservableProperty]
-        private bool isProcessing;
+        private bool? isProcessing;
 
-        [RelayCommand]
+        private bool CanExecuteAction()
+        {
+            return Items.Count > 0 && !(IsProcessing ?? true);
+        }
+
+        [RelayCommand(CanExecute = nameof(CanExecuteAction))]
         private async Task UnlockItemsAsync()
         {
             isProcessing = true;
-            foreach (ItemViewModel? item in Items)
-            {
-                item.IsProcessing = true;
-            }
-
             var tmp = Items.ToList();
             foreach (ItemViewModel? item in tmp)
             {
@@ -40,23 +38,13 @@ namespace EzUnlock.UI.ViewModels
                     _ = Items.Remove(item);
                 }
             }
-
-            foreach (ItemViewModel? item in Items)
-            {
-                item.IsProcessing = false;
-            }
             isProcessing = false;
         }
 
-        [RelayCommand]
+        [RelayCommand(CanExecute = nameof(CanExecuteAction))]
         private async Task DeleteItemsAsync()
         {
             isProcessing = false;
-            foreach (ItemViewModel? item in Items)
-            {
-                item.IsProcessing = true;
-            }
-
             var tmp = Items.ToList();
             foreach (ItemViewModel? item in tmp)
             {
@@ -64,11 +52,6 @@ namespace EzUnlock.UI.ViewModels
                 {
                     _ = Items.Remove(item);
                 }
-            }
-
-            foreach (ItemViewModel? item in Items)
-            {
-                item.IsProcessing = false;
             }
             isProcessing = true;
         }

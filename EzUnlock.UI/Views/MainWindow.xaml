@@ -47,7 +47,7 @@
                     <ColumnDefinition/>
                 </Grid.ColumnDefinitions>
 
-                <Label Grid.Column="0" Content="Add" x:Name="addBtn"/>
+                <Label Grid.Column="0" Content="Add" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                 <Button Grid.Column="1" Margin="5" Command="{Binding OpenFilePickerCommand}" Style="{StaticResource DisableWhileProcessing}" Content="Files"/>
                 <Button Grid.Column="2" Margin="5" Command="{Binding OpenFolderPickerCommand}" Style="{StaticResource DisableWhileProcessing}" Content="Folder"/>
             </Grid>
@@ -56,8 +56,8 @@
                     <RotateTransform Angle="90"/>
                 </Separator.LayoutTransform>
             </Separator>
-            <Button Grid.Column="2" Margin="5" Command="{Binding UnlockItemsAsyncCommand}" Content="Unlock" Style="{StaticResource DisableWhileProcessing}"/>
-            <Button Grid.Column="3" Margin="5" Command="{Binding DeleteItemsAsyncCommand}" Content="Delete" Style="{StaticResource DisableWhileProcessing}"/>
+            <Button Grid.Column="2" Margin="5" Command="{Binding UnlockItemsCommand}" Content="Unlock" Style="{StaticResource DisableWhileProcessing}"/>
+            <Button Grid.Column="3" Margin="5" Command="{Binding DeleteItemsCommand}" Content="Delete" Style="{StaticResource DisableWhileProcessing}"/>
         </Grid>
 
         <ListView Grid.Row="1" ItemsSource="{Binding Items}" HorizontalContentAlignment="Stretch" Grid.ColumnSpan="2">
